@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Place Details | TravelExplorer</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        *{margin:0; padding:0; box-sizing:border-box; font-family: Arial, sans-serif;}
+        body{background:#f1f1f1;}
+        nav{position:fixed; top:0; width:100%; background:#1d3557; color:white; display:flex; justify-content:space-between; padding:15px 30px; z-index:1000;}
+        nav .logo{font-weight:bold; font-size:20px;}
+        nav ul{display:flex; gap:20px; list-style:none;}
+        nav ul li a{color:white; text-decoration:none;}
+        .place-details{margin-top:80px; padding:30px; text-align:center;}
+        .place-details img{max-width:90%; height:auto; border-radius:10px; margin:20px 0;}
+        .links{margin-top:20px; display:flex; justify-content:center; gap:20px;}
+        .links a{padding:10px 15px; background:#1d3557; color:white; text-decoration:none; border-radius:5px;}
+        footer{text-align:center; padding:20px; background:#1d3557; color:white; margin-top:50px;}
+    </style>
+</head>
+<body>
+
+<nav>
+    <div class="logo">TravelExplorer</div>
+    <ul>
+        <li><a href="index.html">Home</a></li>
+    </ul>
+</nav>
+
+<section class="place-details">
+    <h1 id="placeTitle"></h1>
+    <img id="placeImage" src="" alt="Place Image">
+    <p id="placeDescription"></p>
+
+    <div class="links">
+        <a id="googleMap" href="#" target="_blank">View on Google Maps</a>
+        <a id="googleImages" href="#" target="_blank">More Images</a>
+    </div>
+</section>
+
+<footer>
+    <p>© 2026 TravelExplorer | Designed by Kirti</p>
+</footer>
+
+<script>
+const places = {
+          rio: {
+        title: "Rio de Janeiro",
+        img: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?crop=entropy&cs=tinysrgb&fit=max&w=1200&q=80",
+        desc: "Rio is known for Christ the Redeemer and Copacabana Beach.",
+        map: "https://www.google.com/maps/place/Rio+de+Janeiro",
+        images: "https://www.google.com/search?q=Rio+de+Janeiro+images"
+    },
+    tokyo: {
+        title: "Tokyo",
+        img: "https://images.unsplash.com/photo-1549692520-acc6669e2f0c?crop=entropy&cs=tinysrgb&fit=max&w=1200&q=80",
+        desc: "Tokyo blends ancient temples with modern skyscrapers and technology.",
+        map: "https://www.google.com/maps/place/Tokyo",
+        images: "https://www.google.com/search?q=Tokyo+images"
+    },
+    paris: {
+        title: "Paris",
+        img: "https://images.unsplash.com/photo-1502602898657-3e91760cbb34?crop=entropy&cs=tinysrgb&fit=max&w=1200&q=80",
+        desc: "Paris is the City of Light, famous for Eiffel Tower and art museums.",
+        map: "https://www.google.com/maps/place/Paris",
+        images: "https://www.google.com/search?q=Paris+images"
+    },
+    maldives: {
+        title: "Maldives",
+        img: "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?crop=entropy&cs=tinysrgb&fit=max&w=1200&q=80",
+        desc: "Maldives is famous for white sandy beaches and crystal-clear waters.",
+        map: "https://www.google.com/maps/place/Maldives",
+        images: "https://www.google.com/search?q=Maldives+images"
+    },
+    newyork: {
+        title: "New York",
+        img: "https://images.unsplash.com/photo-1490578474895-699cd4e2cf59?crop=entropy&cs=tinysrgb&fit=max&w=1200&q=80",
+        desc: "New York City is known for Times Square, Statue of Liberty, and skyscrapers.",
+        map: "https://www.google.com/maps/place/New+York",
+        images: "https://www.google.com/search?q=New+York+images"
+    }
+};
+
+// Get query param
+const urlParams = new URLSearchParams(window.location.search);
+const placeKey = urlParams.get('place');
+
+// Populate page
+if(places[placeKey]){
+    const place = places[placeKey];
+    document.getElementById("placeTitle").textContent = place.title;
+    document.getElementById("placeImage").src = place.img;
+    document.getElementById("placeDescription").textContent = place.desc;
+    document.getElementById("googleMap").href = place.map;
+    document.getElementById("googleImages").href = place.images;
+} else {
+    document.getElementById("placeTitle").textContent = "Place Not Found";
+    document.getElementById("placeDescription").textContent = "Please go back to the gallery and select a valid destination.";
+    document.getElementById("placeImage").style.display = "none";
+    document.getElementById("googleMap").style.display = "none";
+    document.getElementById("googleImages").style.display = "none";
+}
+</script>
+
+</body>
+</html>
